@@ -21,12 +21,17 @@
         span {
             font-size: 120%;
         }
+
+        input {
+            padding: 10px !important;
+            font-size: 140%;
+        }
     </style>
 </head>
 <body>
-    <h1 class="title">Tutorial Game</h1>
-    <h2>by <a href="https://github.com/Alexever17/">Alexever17</a></h2>
-    <p>This is made by following this <a href="https://phaser.io/tutorials/making-your-first-phaser-3-game">Tutorial</a> and using <a href="https://phaser.io/">Phaser.js</a><br>
+    <h1 id="title">Tutorial Game</h1>
+    <h2 id="undertitle">by <a href="https://github.com/Alexever17/">Alexever17</a></h2>
+    <p id="refresh">This is made by following this <a href="https://phaser.io/tutorials/making-your-first-phaser-3-game">Tutorial</a> and using <a href="https://phaser.io/">Phaser.js</a><br>
      For controlls, use <span>&#8592;&#8593;&#8594;</span> <b>keys</b> on your keyboard</p>
 
 <script type="text/javascript">
@@ -59,7 +64,7 @@
         this.load.image('ground', 'assets/platform.png');
         this.load.image('star', 'assets/star.png');
         this.load.image('bomb', 'assets/bomb.png');
-        this.load.spritesheet('dude','assets/dude.png',{ frameWidth: 32, frameHeight: 46 });
+        this.load.spritesheet('dude','assets/dude2.png',{ frameWidth: 32, frameHeight: 46 });
     }
 
     function create ()
@@ -158,6 +163,10 @@
             player.setTint(0xff0000);
 
             player.anims.play('turn');
+
+            document.getElementById('title').innerHTML = `Game Over`;
+            document.getElementById('undertitle').innerHTML = `Your score is ${score}`;
+            document.getElementById('refresh').innerHTML = '<input type="button" class="uk-button-danger" value="New Game" onClick="window.location.reload()">';
 
             gameOver = true;
         }
