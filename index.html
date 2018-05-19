@@ -61,8 +61,8 @@
          <h3>Mobile Controlls</h3>
          <div class="holder">
             <div>
-                <button class="mobileButton" id="left" onmousedown="Interval(1)" onmouseup="myStopFunction(1)">Left</button>
-                <button class="mobileButton" id="right" onmousedown="Interval(0)" onmouseup="myStopFunction(0)">Right</button>
+                <button class="mobileButton" id="left" ontouchstart="Interval(1)" ontouchend="myStopFunction(1)">Left</button>
+                <button class="mobileButton" id="right" ontouchstart="Interval(0)" ontouchend="myStopFunction(0)">Right</button>
             </div>
             <button class="mobileButton" id="left" onclick="upClick()">Jump</button>
          </div>
