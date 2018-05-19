@@ -20,6 +20,9 @@ var config = {
 var game = new Phaser.Game(config);
 var score = 0;
 var scoreText;
+var endText;
+var leftInterval;
+var rightInterval
 
 function preload() {
     this.load.image('sky', 'assets/sky.png');
@@ -129,11 +132,13 @@ function create() {
         document.getElementById('undertitle').innerHTML = `Your score is ${score}`;
         document.getElementById('refresh').innerHTML = '<input type="button" class="uk-button-danger" value="New Game" onClick="window.location.reload()">';
 
+        endText = this.add.text(285, 280, 'GAME OVER', { fontSize: '48px', fill: '#B9001D' });
+
         gameOver = true;
     }
 }
 
-function update() {
+function update() { 
     if (cursors.left.isDown) {
         player.setVelocityX(-160);
 
@@ -149,8 +154,37 @@ function update() {
 
         player.anims.play('turn');
     }
-
     if (cursors.up.isDown && player.body.touching.down) {
+        upClick();
+    }
+}
+
+function Interval(direction) {
+    if (direction === 1) {
+        leftInterval = setInterval(function(direction) {
+            player.setVelocityX(-160);
+
+            player.anims.play('left', true);
+     }, 10);
+    } else {
+        rightInterval = setInterval(function(direction) {
+            player.setVelocityX(160);
+
+            player.anims.play('right', true);
+        }, 10);
+    }
+}
+
+function upClick() {
+    if (player.body.touching.down) {
         player.setVelocityY(-600);
+    }
+}
+
+function myStopFunction(direction) {
+    if (direction === 1) {
+        clearInterval(leftInterval);
+    } else {
+        clearInterval(rightInterval);
     }
 }
